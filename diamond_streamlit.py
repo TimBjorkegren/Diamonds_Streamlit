@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 data_diamonds = pd.read_csv('diamonds.csv', sep=';')
 data_diamonds = data_diamonds.dropna()
+data_diamonds = data_diamonds.drop(columns=['Unnamed: 0'])
 data_diamonds = data_diamonds.query('x > 0 and y > 0 and z > 0')
 
 st.sidebar.title('Sidebar Menu')
@@ -14,7 +15,7 @@ page = st.sidebar.selectbox('Välj sida', [
     'Start',
     'Dataöversikt',
     'Filtrera diamanter',
-    'Visualisera diamanter',
+    'Analys diamanter',
     'Slutsatser'
 ])
 
@@ -57,8 +58,8 @@ elif page == 'Filtrera diamanter':
 
     st.dataframe(filtered_data_diamonds)
 
-elif page == 'Visualisera diamanter':
-    st.header('Visualisera diamanter')
+elif page == 'Analys diamanter':
+    st.header('Analys diamanter')
 
 elif page == 'Slutsatser':
     st.header('Slutsatser')    
