@@ -39,6 +39,12 @@ data_diamonds['quality_total_score'] = data_diamonds['cut_scores'] + data_diamon
 #Grouping all diamonds that have the same qualities into groupes and then taking the median value
 data_diamonds['value_score'] = data_diamonds['quality_total_score'] / data_diamonds['price_per_carat']
 median_value = data_diamonds.groupby(['cut', 'color', 'clarity', 'quality_total_score'])['value_score'].median().reset_index()
+
+median_carat = data_diamonds.groupby(
+    ['cut', 'color', 'clarity', 'quality_total_score']
+)['carat'].median().reset_index()
+
+median_value = median_value.merge(median_carat, on=['cut', 'color', 'clarity', 'quality_total_score'])
 top_value = median_value.sort_values(by='value_score', ascending=False).head(10)
 
 
@@ -138,6 +144,50 @@ ax.set_xticks(range(len(corr.columns)))
 ax.set_yticks(range(len(corr.columns)))
 ax.set_xticklabels(corr.columns, rotation=45, ha='left')
 ax.set_yticklabels(corr.columns)
+st.pyplot(fig)
+
+
+# Scatterplot for correlations between price per carat on value score and price affect on carat on two specific diamonds
+
+price_change = data_diamonds[
+    (data_diamonds['cut'] == 'Very Good') &
+    (data_diamonds['color'] == 'E') &
+    (data_diamonds['clarity'] == 'VVS2')
+].copy()
+
+price_change_2 = data_diamonds[
+    (data_diamonds['cut'] == 'Ideal') &
+    (data_diamonds['color'] == 'J') &
+    (data_diamonds['clarity'] == 'IF')
+].copy()
+
+price_change['volume'] = price_change['x']  * price_change['y']  * price_change['z']
+price_change_2['volume'] = price_change['x']  * price_change['y']  * price_change['z']
+
+st.header('Scatterplot på två specifika diamanter')
+
+fig, ax = plt.subplots(2, 2, figsize=(14, 5))
+ax[0, 0].scatter(price_change['value_score'], price_change['price_per_carat'], alpha=0.5)
+ax[0, 0].set_xlabel('value score')
+ax[0, 0].set_ylabel('Price per carat')
+ax[0, 0].set_title('Price per carat affect on (clarity = VVS2, cut = Very good, color = E) value score')
+
+ax[0, 1].scatter(price_change_2['value_score'], price_change_2['price_per_carat'], alpha=0.5)
+ax[0, 1].set_xlabel('value score')
+ax[0, 1].set_ylabel('Price per carat')
+ax[0, 1].set_title('Price per carat affect on (clarity = IF, cut = Ideal, color = J) value score')
+
+ax[1, 0].scatter(price_change['price'], price_change['carat'], alpha=0.5)
+ax[1, 0].set_xlabel('price')
+ax[1, 0].set_ylabel('carat')
+ax[1, 0].set_title('Price affect on (clarity = VVS2, cut = Very good, color = E) carat')
+
+ax[1, 1].scatter(price_change_2['price'], price_change_2['carat'], alpha=0.5)
+ax[1, 1].set_xlabel('price')
+ax[1, 1].set_ylabel('carat')
+ax[1, 1].set_title('Price affect on (clarity = IF, cut = Ideal, color = J) carat')
+
+fig.tight_layout()
 st.pyplot(fig)
 
 
