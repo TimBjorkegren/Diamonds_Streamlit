@@ -5,10 +5,20 @@ import requests
 import matplotlib.pyplot as plt
 
 # Setting up the dataframe and cleaning it up
-data_diamonds = pd.read_csv('diamonds.csv', sep=';')
-data_diamonds = data_diamonds.dropna()
-data_diamonds = data_diamonds.drop(columns=['Unnamed: 0'])
-data_diamonds = data_diamonds.query('x > 0 and y > 0 and z > 0')
+
+@st.cache_data()
+def load_data():
+    df = pd.read_csv('diamonds.csv', sep=';')
+
+    if 'Unnamed: 0' in df.columns:
+        df = df.drop(columns=['Unnamed: 0'])
+
+    df = df.dropna()
+    df = df.query('x > 0 and y > 0 and z > 0')
+
+    return df
+
+data_diamonds = load_data()
 
 # Counting the price per carat
 data_diamonds['price_per_carat'] = data_diamonds['price'] / data_diamonds['carat']
