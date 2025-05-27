@@ -32,23 +32,9 @@ median_value = data_diamonds.groupby(['cut', 'color', 'clarity', 'quality_total_
 top_value = median_value.sort_values(by='value_score', ascending=False).head(10)
 
 
-
-# Heatmap for correlations between different qualities 
-cols = ["carat", "x", "y", "z", "price", "price_per_carat", "value_score"]
-corr = data_diamonds[cols].corr()
-
-fig, ax = plt.subplots(figsize=(8, 6))
-cax = ax.matshow(corr, cmap="coolwarm", vmin=-1, vmax=1)
-fig.colorbar(cax)
-ax.set_xticks(range(len(corr.columns)))
-ax.set_yticks(range(len(corr.columns)))
-ax.set_xticklabels(corr.columns, rotation=45, ha='left')
-ax.set_yticklabels(corr.columns)
-st.pyplot(fig)
-
-
 # Scatter plot for carat vs price
 fig, ax = plt.subplots(figsize = (8, 6))
+st.header('Scatter plot för price och carat')
 ax.scatter(data_diamonds['carat'], data_diamonds['price'])
 ax.set_xlabel('carat')
 ax.set_ylabel('price')
@@ -127,6 +113,23 @@ with col2:
     - SI2: 2  
     - I1: 1
     """)
+
+
+# Heatmap for correlations between different qualities 
+cols = ["carat", "x", "y", "z", "price", "price_per_carat", "value_score"]
+corr = data_diamonds[cols].corr()
+
+st.header('Heatmap korrleationer')
+fig, ax = plt.subplots(figsize=(8, 6))
+cax = ax.matshow(corr, cmap="coolwarm", vmin=-1, vmax=1)
+fig.colorbar(cax)
+ax.set_title('Heatmap Matrix')
+ax.set_xticks(range(len(corr.columns)))
+ax.set_yticks(range(len(corr.columns)))
+ax.set_xticklabels(corr.columns, rotation=45, ha='left')
+ax.set_yticklabels(corr.columns)
+st.pyplot(fig)
+
 
 # Displaying dataframe of diamonds only the 10 best
 st.header('Bästa diamanter baserad på deras value score (Top 10)')
