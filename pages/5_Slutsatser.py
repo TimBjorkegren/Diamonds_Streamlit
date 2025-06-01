@@ -48,5 +48,9 @@ st.markdown("""
 
 - **Ingen maskininlärning:** Istället för att använda enkel division (value score) hade mer advancerad modellering såsom maskininlärning kunnat ge mer exakt uppskattning av vad som påverkar priset. 
 
-- **Attribut poängsättning:** Alla egenskaper (cut, color, clarity) väger lika mycket i value score medans det finns en sannolikhet att vissa väger mer än andra när det kommer till vad som påverkar priset.                                  
+- **Attribut poängsättning:** Alla egenskaper (cut, color, clarity) väger lika mycket i value score medans det finns en sannolikhet att vissa väger mer än andra när det kommer till vad som påverkar priset.
+
+- **Bättre visualisering: Kunde tilläga fler interaktiva visualiseringar som kan ge användaren möjligheten att själv utforska hur olika faktorer påverkar priset.**
+
+- **Analysera trender: Man kunde researcha vilka diamanter som är mest populär vid säsonger för att hitta dom mest populära och rikta sig in mot dom för att ge företaget ett bättre förslag på diamanter.**                                 
             """)
