@@ -49,7 +49,8 @@ st.markdown("""
 
 - **Ingen maskininlärning:** Istället för att använda enkel division (value score) hade mer advancerad modellering såsom maskininlärning kunnat ge mer exakt uppskattning av vad som påverkar priset. 
 
-- **Attribut poängsättning:** Alla egenskaper (cut, color, clarity) väger lika mycket i value score medans det finns en sannolikhet att vissa väger mer än andra när det kommer till vad som påverkar priset.
+- **Attribut poängsättning:** Alla egenskaper (cut, color, clarity) väger lika mycket i value score medans det finns en sannolikhet att vissa väger mer än andra när det kommer till vad som påverkar priset. Vi skulle kunnat använt heatmap
+för att kunna visa hur mycket korrelation dessa attribut har för påverkan på priset och på sätt uppdatera poängsystemet baserat på hur stark korrelationen är.
 
 - **Bättre visualisering: Kunde tilläga fler interaktiva visualiseringar som kan ge användaren möjligheten att själv utforska hur olika faktorer påverkar priset.**
 

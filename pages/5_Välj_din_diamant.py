@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import requests
 import matplotlib.pyplot as plt
+import streamlit.components.v1 as components
 
 @st.cache_data()
 def load_data():
