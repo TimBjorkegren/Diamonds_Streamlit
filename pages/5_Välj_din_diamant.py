@@ -55,7 +55,7 @@ data_diamonds['value_score'] = data_diamonds['quality_total_score'] / data_diamo
 
 #Räkna ut diamantens procent ranking
 percentile_rank = (data_diamonds['value_score'] < value_score).mean() * 100
-st.markdown(f'Din diamant är bättre än **{percentile_rank:2f}** av diamanterna i datasetet') 
+st.markdown(f'Din diamant är bättre än **{percentile_rank:.2f}%** av diamanterna i datasetet') 
 
 fig, ax = plt.subplots(figsize = (8, 4))
 ax.hist(data_diamonds['value_score'], bins = 50, color = 'skyblue')

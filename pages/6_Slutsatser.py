@@ -18,6 +18,7 @@ def load_data():
 
 data_diamonds = load_data()
 
+#Text
 st.header('Slutsats')
 st.write('Syfte: Vår uppgift var att analysera ett dataset av diamanter för ett företag som skulle börja sälja diamanter, och våran uppgift var hur vi kunde hjälpa företaget med att analysera datasetet' \
 '. Det som jag fastnade för var vilka typer av diamanter kan företaget köpa in för att få en så stor vinstmarginal på de typer av diamanter dom skulle köpa in. ' \
